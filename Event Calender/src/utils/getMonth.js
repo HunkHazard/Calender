@@ -71,6 +71,6 @@ export function entireMonth(month, year) {
 
   while (allDates.length) grid.push(allDates.splice(0, 7));
 
-  console.log(grid);
+  // console.log(grid);
   return grid;
 }

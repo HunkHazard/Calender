@@ -1,0 +1,7 @@
+.current {
+    color: green;
+}
+
+.not_current {
+    color: red;
+}
