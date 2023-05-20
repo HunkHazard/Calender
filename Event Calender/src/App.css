@@ -1,8 +1,21 @@
-.current::after {
-    background-color: rgb(136, 92, 156)
+.current {
+    
+    /* border : 1px solid rgb(154, 18, 223) */
+}
+.current:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    background-color: rgb(170, 139, 206);
+
+}
+.today{
+    background-color: rgb(170, 139, 206);
+}
+.today:hover{
+    background-color: white
 }
 
 
 .not_current {
-    color: red;
+    border: 1px solid rgb(240, 230, 245);
+    background-color: silver;
 }

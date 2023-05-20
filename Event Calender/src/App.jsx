@@ -144,84 +144,85 @@ function App() {
           </button>
         </div>
       </div>
-      <div className="row">
-        <table className="table">
-          <thead>
-            <tr>
-              {week_days.map((day) => (
-                <th key={day}>{day}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {month_calender.map((week, index) => (
-              <tr key={index}>
-                {week.map((date_obj, index) => (
-                  <td
-                    key={index}
-                    className={
-                      date_obj.status === true ? "current" : "not_current"
-                    }
-                    onClick={() => {
-                      if (date_obj.status === true) {
-                        openModal(date_obj.date);
-                      } else {
-                        null;
-                      }
-                    }}
-                  >
-                    {date_obj.date}
-                  </td>
-                ))}
-              </tr>
+      <div className="container mt-5 border">
+        <div className="row ">
+          {week_days.map((day) => (
+            <div key={day} className="col border">
+              <h5>{day}</h5>
+            </div>
+          ))}
+        </div>
+        {month_calender.map((week, index) => (
+          <div key={index} className="row  ">
+            {week.map((date_obj, index) => (
+              <div
+                key={index}
+                className={`col ${
+                  date_obj.status === true ? "current" : "not_current"
+                }  border  ${
+                  // if the date is today, add the today class (same date, month and year)
+                  date_obj.date === new Date().getDate() &&
+                  month === new Date().getMonth() &&
+                  year === new Date().getFullYear()
+                    ? " today "
+                    : ""
+                }  `}
+                onClick={() => {
+                  if (date_obj.status === true) {
+                    openModal(date_obj.date);
+                  }
+                }}
+              >
+                {date_obj.date}
+              </div>
             ))}
-          </tbody>
-        </table>
-      </div>
-      {/* 
+          </div>
+        ))}
+        {/* 
       bootstrap generic modal is being used here
       with some customizations for different modals
       */}
-      <div className="modal fade" id="optionModal">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h4 className="modal-title">Select an action</h4>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">
-              <p>
-                Do you want to list all events for {clickedDate} or create a new
-                event?
-              </p>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={listEvents}
-              >
-                List Events
-              </button>
-              <button
-                type="button"
-                className="btn btn-success"
-                onClick={openCreateModal}
-              >
-                Create Event
-              </button>
+        <div className="modal fade" id="optionModal">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title">Select an action</h4>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body">
+                <p>
+                  Do you want to list all events for {clickedDate} or create a
+                  new event?
+                </p>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={listEvents}
+                >
+                  List Events
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-success"
+                  onClick={openCreateModal}
+                >
+                  Create Event
+                </button>
+              </div>
             </div>
           </div>
         </div>
