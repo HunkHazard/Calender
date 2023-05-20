@@ -1,6 +1,7 @@
-.current {
-    color: green;
+.current::after {
+    background-color: rgb(136, 92, 156)
 }
+
 
 .not_current {
     color: red;
