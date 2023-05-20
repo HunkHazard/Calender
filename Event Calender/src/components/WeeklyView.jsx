@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import previous from "../../public/images/icons8-back-to-40.png";
-import next from "../../public/images/icons8-next-page-40.png";
+import previous from "/images/icons8-back-to-40.png";
+import next from "/images/icons8-next-page-40.png";
 import { entireMonth } from "../utils/getMonth";
 import { Modal } from "bootstrap";
 
