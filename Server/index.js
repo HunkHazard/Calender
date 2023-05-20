@@ -32,26 +32,40 @@ const client = new MongoClient(uri, {
   },
 });
 
-// adding event function
-async function addEvent(event) {
+// function has been marked async because we are using await (connction with server takes time)
+app.post("/addEvent", async (req, res) => {
+  const event = req.body;
+  // console.log(event);
+  await client.connect();
+  const db = client.db("event_calender");
+  const collection = db.collection("events");
+
   try {
-    await client.connect();
-    const db = client.db("event_calender");
-    const collection = db.collection("events");
-    const insertEvent = await collection.insertOne(event);
+    await collection.insertOne(event);
+    console.log("Event Added");
+    res.send({ message: "Event Added" });
   } catch (err) {
+    res.send(err);
     console.log(err);
   }
-}
+});
 
-// app.post("/addEvent", (req, res) => {
-//   const event = req.body;
-//   console.log(event);
-//   try {
-//     addEvent(event);
-//     res.send("Event added");
-//   } catch (err) {
-//     res.send(err);
-//     console.log(err);
-//   }
-// });
+app.get("/events/:month/:year", async (req, res) => {
+  // get month and year from the incoming payload
+  const month = parseInt(req.params.month);
+  const year = parseInt(req.params.year);
+  console.log(month, year);
+  await client.connect();
+  const db = client.db("event_calender");
+  const collection = db.collection("events");
+
+  await collection
+    .find({ month: month, year: year })
+    .toArray()
+    .then((result) => {
+      console.log(result);
+      res.send(result);
+    });
+
+  console.log("Events Fetched");
+});
