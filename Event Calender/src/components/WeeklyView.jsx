@@ -57,13 +57,12 @@ function WeeklyView() {
 
   // open the modal to create an event
   function createEvent(e) {
-    e.preventDefault();
+    // e.preventDefault();
     console.log("create event");
     const title = document.getElementById("eventTitle").value;
     const description = document.getElementById("eventDescription").value;
     const date = clickedDate;
     const month = parseInt(document.getElementById("month").value);
-    const year = 2023;
 
     const event = {
       title,
@@ -98,6 +97,8 @@ function WeeklyView() {
       .catch((err) => {
         console.log("Error: ", err);
       });
+
+    alert("Event Created Successfully");
   }
 
   function openCreateModal() {
